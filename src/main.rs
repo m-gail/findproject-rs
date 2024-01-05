@@ -36,6 +36,8 @@ struct Args {
 struct Directory {
     path: String,
     #[serde(default)]
+    only_self: bool,
+    #[serde(default)]
     exclude: Vec<String>,
     #[serde(default)]
     sub_directories: Vec<Directory>,
@@ -81,6 +83,12 @@ fn walk_directory(directory: Directory, base_path: &String) -> Result<(), Box<dy
             )))
         }
     };
+
+    if directory.only_self {
+        println!("{}", full_path);
+        return Ok(())
+    }
+
     let sub_directories = fs::read_dir(&full_path)?;
 
     for sub_directory in sub_directories {
