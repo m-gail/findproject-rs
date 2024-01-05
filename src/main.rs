@@ -11,7 +11,7 @@ use serde::{Deserialize, Serialize};
 
 fn get_default_config_path() -> String {
     let full_config_path = "~/.config/findproject/config.yaml".to_string();
-    let config_path = "/findproject/config.yaml".to_string();
+    let config_path = "findproject/config.yaml".to_string();
     let default_path = "~/.config".to_string();
     let xdg_config_home = env::var("XDG_CONFIG_HOME");
 
